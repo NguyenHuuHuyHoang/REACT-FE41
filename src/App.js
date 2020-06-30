@@ -11,6 +11,7 @@ import RenderWithMap from './DataBinding/RenderWithMap/RenderWithMap';
 import DemoProps from './Props/DemoProps';
 import BT2ProductList from './Props/BT2ProductList/BT2ProductList';
 import BT3PhoneList from './Props/BT3PhoneList/BT3PhoneList';
+import BTCarts from './Props/BTCart/BTCarts';
 
 
 class App extends Component {
@@ -139,7 +140,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <BT3PhoneList />
+        <BTCarts />
+        {/* <BT3PhoneList /> */}
         {/* <BT2ProductList dataJSON={this.dataJSON}/> */}
       {/* <BaiTapDanLayout /> */}
        {/* <EventBinding /> */}
