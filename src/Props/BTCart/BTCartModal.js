@@ -21,8 +21,8 @@ export default class BTCartModal extends Component {
         {spGH.soLuong}
         <button className="btn btn-success">-</button>
       </td>
-      <td>{spGH.donGia}</td>
-      <td>{spGH.donGia * spGH.soLuong}</td>
+      <td>{spGH.donGia.toLocaleString()}</td>
+      <td>{(spGH.donGia * spGH.soLuong).toLocaleString()}</td>
       <td>
         <button className="btn btn-danger">Xóa</button>
       </td>

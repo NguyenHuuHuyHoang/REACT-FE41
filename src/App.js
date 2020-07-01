@@ -140,8 +140,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <BTCarts /> */}
-        <BT3PhoneList />
+        <BTCarts />
+        {/* <BT3PhoneList /> */}
         {/* <BT2ProductList dataJSON={this.dataJSON}/> */}
       {/* <BaiTapDanLayout /> */}
        {/* <EventBinding /> */}

@@ -16,7 +16,7 @@ export default class BTCarts extends Component {
 
     //Chuc nang them san pham vao gio hang
     themGioHang = (spClick) => {
-        console.log("Sản phẩm được clikc", spClick);
+        console.log("Sản phẩm được click", spClick);
         //Tao ra 1 sp gio hang
         let spGH = {
             maSP: spClick.maSP,
@@ -31,7 +31,7 @@ export default class BTCarts extends Component {
 
 
         //Tim san pham duoc click co trong gio hang hay chua
-        let index = gioHangCapNhat.findIndex(spGioHang => spGioHang) //spGioHang la cac object dang co trong state gioHang
+        let index = gioHangCapNhat.findIndex(spGioHang => spGioHang.maSP === spClick.maSP) //spGioHang la cac object dang co trong state gioHang
         if (index !== -1) {
             //Neu tim duoc san pham co trong gio hang thi tai vi tri sp do tang so luong
             gioHangCapNhat[index].soLuong += 1;
@@ -50,6 +50,8 @@ export default class BTCarts extends Component {
 
     
 
+    
+
     tinhTongTien = () => {
         return this.props.gioHang.reduce((tongTien,spGH,index) => {
             return tongTien += spGH.soLuong * spGH.donGia
@@ -58,12 +60,12 @@ export default class BTCarts extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container p-5">
         <h3 className="text-center">BÀI TẬP GIỎ HÀNG</h3>
         <div className="text-right">
           <button
             type="button"
-            className="btn btn-default btn-lg "
+            className="btn btn-default btn-lg mb-5"
             data-toggle="modal"
             data-target="#modelId"
           >
