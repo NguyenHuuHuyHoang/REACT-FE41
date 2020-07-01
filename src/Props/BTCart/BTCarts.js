@@ -95,6 +95,23 @@ export default class BTCarts extends Component {
     });
   };
 
+ ChangeQuantityItem = (spChange, type = 0) => { //If no input secondary params => add else => subtract
+    let gioHangCapNhat = [...this.state.gioHang];
+    let index = gioHangCapNhat.findIndex(
+      spGioHang => spGioHang.maSP === spChange.maSP
+    );
+if (type) {
+    gioHangCapNhat[index].soLuong -= 1;
+} else {
+  gioHangCapNhat[index].soLuong += 1;
+}
+    this.setState({
+      gioHang: gioHangCapNhat,
+    });
+  
+ }
+
+
   tinhTongTien = () => {
     return this.props.gioHang.reduce((tongTien, spGH, index) => {
       return (tongTien += spGH.soLuong * spGH.donGia);
@@ -120,6 +137,7 @@ export default class BTCarts extends Component {
           gioHang={this.state.gioHang}
           tinhTongTien={this.tinhTongTien}
           DeleteItemCart ={this.DeleteItemCart}
+          ChangeQuantityItem ={this.ChangeQuantityItem}
         />
         <BTProductList
           dataPhone={this.dataPhone}

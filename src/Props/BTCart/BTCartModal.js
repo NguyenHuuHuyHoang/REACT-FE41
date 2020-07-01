@@ -17,9 +17,9 @@ export default class BTCartModal extends Component {
       </td>
       <td>{spGH.tenSP}</td>
       <td>
-        <button className="btn btn-success">+</button>
+        <button className="btn btn-success" onClick={()=>{this.props.ChangeQuantityItem(spGH)}}>+</button>
         {spGH.soLuong}
-        <button className="btn btn-success">-</button>
+        <button className="btn btn-success"onClick={()=>{this.props.ChangeQuantityItem(spGH,1)}}>-</button>
       </td>
       <td>{spGH.donGia.toLocaleString()}</td>
       <td>{(spGH.donGia * spGH.soLuong).toLocaleString()}</td>
