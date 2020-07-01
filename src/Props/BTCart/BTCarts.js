@@ -104,7 +104,7 @@ export default class BTCarts extends Component {
     if (isAdd) {
       gioHangCapNhat[index].soLuong += 1;
     } else {
-      if (gioHangCapNhat[index].soLuong < 1) {
+      if (gioHangCapNhat[index].soLuong < 2) {
         return;
       }
       gioHangCapNhat[index].soLuong -= 1;

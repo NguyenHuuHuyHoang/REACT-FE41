@@ -17,9 +17,9 @@ export default class BTCartModal extends Component {
       </td>
       <td>{spGH.tenSP}</td>
       <td>
-        <button className="btn btn-success" onClick={()=>{this.props.ChangeQuantityItem(spGH)}}>+</button>
+        <button className="btn btn-success mr-2" onClick={()=>{this.props.ChangeQuantityItem(spGH)}}>+</button>
         {spGH.soLuong}
-        <button className="btn btn-success"onClick={()=>{this.props.ChangeQuantityItem(spGH,false)}}>-</button>
+        <button className="btn btn-success ml-2"onClick={()=>{this.props.ChangeQuantityItem(spGH,false)}}>-</button>
       </td>
       <td>{spGH.donGia.toLocaleString()}</td>
       <td>{(spGH.donGia * spGH.soLuong).toLocaleString()}</td>
@@ -33,7 +33,7 @@ export default class BTCartModal extends Component {
  tinhTongTien = () => {
     return this.props.gioHang.reduce((tongTien, spGH, index) => {
       return (tongTien += spGH.soLuong * spGH.donGia);
-    },0);
+    },0).toLocaleString();
   };
 
 
