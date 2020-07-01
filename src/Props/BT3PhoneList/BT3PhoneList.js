@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import BT3PhoneItem from './BT3PhoneItem'
+import BT3PhoneDetail from './BT3PhoneDetail'
 
 export default class BT3PhoneList extends Component {
     dataPhone = [
@@ -12,64 +14,16 @@ export default class BT3PhoneList extends Component {
 
       
       
-    renderPhone = () => {
-        return this.dataPhone.map((phone, index) =>{
-            return <div className="col-4" key={index}>
-            <div class="card">
-                <img class="card-img-top m-auto" style={{width:'80%'}} src={phone.hinhAnh} alt=""/>
-                <div class="card-body">
-                    <h4 class="card-title">{phone.tenSP}</h4>
-                   <button className="btn btn-dark text-light">Xem chi tiết</button>
-                </div>
-             </div>
-         </div>
-        })
-    }
-
     render() {
         return (
                <div className="container">
                    <h3>Danh sách điện thoại</h3>
                    <div className="row">
-                       {this.renderPhone()}
+                    <BT3PhoneItem dataPhone={this.dataPhone} />
                      </div>
                      <hr/>
                      <h3>Chi tiết sản phẩm</h3>
-                     <div className="row">
-                         <div className="col-4">
-                                <p>{this.state.phoneDetail.tenSP}</p>
-                                <img src={this.state.phoneDetail.hinhAnh} alt="" className="card-img-top"/>
-                         </div>
-                         <div className="col-8">
-                                <table className="table" >
-                                    <tr>
-                                        <th>Màn hình</th>
-                                        <th>{this.state.phoneDetail.manHinh}</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Hệ điều hành</th>
-                                        <th>{this.state.phoneDetail.heDieuHanh}</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Camera trước</th>
-                                        <th>{this.state.phoneDetail.cameraTruoc}</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Camera sau</th>
-                                        <th>{this.state.phoneDetail.cameraSau}</th>
-                                    </tr>
-                                    <tr>
-                                        <th>RAM</th>
-                                        <th>{this.state.phoneDetail.ram}</th>
-                                    </tr>
-                                    <tr>
-                                        <th>ROM</th>
-                                        <th>{this.state.phoneDetail.rom}</th>
-                                    </tr>
-                                </table>
-                         </div>
-                     </div>
-                     
+                    <BT3PhoneDetail phoneDetail={this.state.phoneDetail}/>
                </div>
         )
     }
