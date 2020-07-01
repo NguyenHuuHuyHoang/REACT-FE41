@@ -87,7 +87,7 @@ export default class BTCarts extends Component {
   DeleteItemCart = (spXoa) => {
     let gioHangCapNhat = [...this.state.gioHang];
     let index = gioHangCapNhat.findIndex(
-      spGioHang => spGioHang.maSP === spXoa.maSP
+      (spGioHang) => spGioHang.maSP === spXoa.maSP
     );
     gioHangCapNhat.splice(index);
     this.setState({
@@ -95,22 +95,24 @@ export default class BTCarts extends Component {
     });
   };
 
- ChangeQuantityItem = (spChange, type = 0) => { //If no input secondary params => add else => subtract
+  ChangeQuantityItem = (spChange, type = 0) => {
+    //If no input secondary params => add else => subtract
     let gioHangCapNhat = [...this.state.gioHang];
     let index = gioHangCapNhat.findIndex(
-      spGioHang => spGioHang.maSP === spChange.maSP
+      (spGioHang) => spGioHang.maSP === spChange.maSP
     );
-if (type) {
-    gioHangCapNhat[index].soLuong -= 1;
-} else {
-  gioHangCapNhat[index].soLuong += 1;
-}
+    if (gioHangCapNhat[index].soLuong < 1) {
+      return;
+    }
+    if (type) {
+      gioHangCapNhat[index].soLuong -= 1;
+    } else {
+      gioHangCapNhat[index].soLuong += 1;
+    }
     this.setState({
       gioHang: gioHangCapNhat,
     });
-  
- }
-
+  };
 
   tinhTongTien = () => {
     return this.props.gioHang.reduce((tongTien, spGH, index) => {
@@ -136,8 +138,8 @@ if (type) {
         <BTCartModal
           gioHang={this.state.gioHang}
           tinhTongTien={this.tinhTongTien}
-          DeleteItemCart ={this.DeleteItemCart}
-          ChangeQuantityItem ={this.ChangeQuantityItem}
+          DeleteItemCart={this.DeleteItemCart}
+          ChangeQuantityItem={this.ChangeQuantityItem}
         />
         <BTProductList
           dataPhone={this.dataPhone}
