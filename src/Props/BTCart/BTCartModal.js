@@ -24,7 +24,7 @@ export default class BTCartModal extends Component {
       <td>{spGH.donGia.toLocaleString()}</td>
       <td>{(spGH.donGia * spGH.soLuong).toLocaleString()}</td>
       <td>
-        <button className="btn btn-danger">Xóa</button>
+        <button className="btn btn-danger" onClick={()=>{this.props.DeleteItemCart(spGH)}}>Xóa</button>
       </td>
     </tr>
     })
