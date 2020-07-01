@@ -95,28 +95,22 @@ export default class BTCarts extends Component {
     });
   };
 
-  ChangeQuantityItem = (spChange, type = 0) => {
+  ChangeQuantityItem = (spChange, isAdd = true) => {
     //If no input secondary params => add else => subtract
     let gioHangCapNhat = [...this.state.gioHang];
     let index = gioHangCapNhat.findIndex(
       (spGioHang) => spGioHang.maSP === spChange.maSP
     );
-    if (gioHangCapNhat[index].soLuong < 1) {
-      return;
-    }
-    if (type) {
-      gioHangCapNhat[index].soLuong -= 1;
-    } else {
+    if (isAdd) {
       gioHangCapNhat[index].soLuong += 1;
+    } else {
+      if (gioHangCapNhat[index].soLuong < 1) {
+        return;
+      }
+      gioHangCapNhat[index].soLuong -= 1;
     }
     this.setState({
       gioHang: gioHangCapNhat,
-    });
-  };
-
-  tinhTongTien = () => {
-    return this.props.gioHang.reduce((tongTien, spGH, index) => {
-      return (tongTien += spGH.soLuong * spGH.donGia);
     });
   };
 
@@ -137,7 +131,6 @@ export default class BTCarts extends Component {
         </div>
         <BTCartModal
           gioHang={this.state.gioHang}
-          tinhTongTien={this.tinhTongTien}
           DeleteItemCart={this.DeleteItemCart}
           ChangeQuantityItem={this.ChangeQuantityItem}
         />
