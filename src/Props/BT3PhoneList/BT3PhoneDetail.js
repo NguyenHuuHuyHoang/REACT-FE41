@@ -12,30 +12,32 @@ export default class BT3PhoneDetail extends Component {
         </div>
         <div className="col-8">
           <table className="table">
-            <tr>
-              <th>Màn hình</th>
-              <th>{phoneDetail.manHinh}</th>
-            </tr>
-            <tr>
-              <th>Hệ điều hành</th>
-              <th>{phoneDetail.heDieuHanh}</th>
-            </tr>
-            <tr>
-              <th>Camera trước</th>
-              <th>{phoneDetail.cameraTruoc}</th>
-            </tr>
-            <tr>
-              <th>Camera sau</th>
-              <th>{phoneDetail.cameraSau}</th>
-            </tr>
-            <tr>
-              <th>RAM</th>
-              <th>{phoneDetail.ram}</th>
-            </tr>
-            <tr>
-              <th>ROM</th>
-              <th>{phoneDetail.rom}</th>
-            </tr>
+            <tbody>
+              <tr>
+                <th>Màn hình</th>
+                <th>{phoneDetail.manHinh}</th>
+              </tr>
+              <tr>
+                <th>Hệ điều hành</th>
+                <th>{phoneDetail.heDieuHanh}</th>
+              </tr>
+              <tr>
+                <th>Camera trước</th>
+                <th>{phoneDetail.cameraTruoc}</th>
+              </tr>
+              <tr>
+                <th>Camera sau</th>
+                <th>{phoneDetail.cameraSau}</th>
+              </tr>
+              <tr>
+                <th>RAM</th>
+                <th>{phoneDetail.ram}</th>
+              </tr>
+              <tr>
+                <th>ROM</th>
+                <th>{phoneDetail.rom}</th>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>
