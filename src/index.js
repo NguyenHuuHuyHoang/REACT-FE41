@@ -6,9 +6,12 @@ import { Provider } from "react-redux";
 import App from "./App";
 import "./index.css";
 
-import rootReducer from "./reducer/rootReducer"
+import rootReducer from "./reducer/rootReducer";
 
-const store = createStore(rootReducer); //createStore nhận vào 1 tham số là reducer của mình
+const store = createStore(
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+); //createStore nhận vào 1 tham số là reducer của mình
 
 ReactDOM.render(
   <Provider store={store}>

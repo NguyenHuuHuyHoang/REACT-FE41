@@ -13,6 +13,8 @@ import BT2ProductList from './Props/BT2ProductList/BT2ProductList';
 import BT3PhoneList from './Props/BT3PhoneList/BT3PhoneList';
 import BTCarts from './Props/BTCart/BTCarts';
 import TodoApp from './TodoApp/TodoApp';
+import CartsRedux from './GioHangRedux/CartsRedux';
+
 
 
 class App extends Component {
@@ -151,7 +153,8 @@ class App extends Component {
        {/* <ExState2 /> */}
        {/* <RenderWithMap /> */}
        {/* <DemoProps /> */}
-       <TodoApp />
+       {/* <TodoApp /> */}
+       <CartsRedux />
       </div>
     );
   }
