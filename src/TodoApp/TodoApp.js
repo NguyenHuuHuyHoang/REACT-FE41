@@ -17,6 +17,33 @@ class TodoApp extends Component {
     });
   };
 
+  renderToDo = () => (
+     this.props.todoList
+    .filter((todo) => {
+      switch (this.props.filter) {
+        case "active": {
+          return !todo.isCompleted;
+        }
+        case "completed": {
+          return todo.isCompleted;
+        }
+        case "all": {
+          return todo;
+        }
+      }
+    })
+    .map((todo) => (
+      <li
+        key={todo.id}
+        onClick={() => this.todoCompleted(todo.id)}
+        style={{
+          textDecoration: todo.isCompleted ? "line-through" : "none",
+        }}
+      >
+        {todo.content}
+      </li>
+    )))
+
   addTodo = (evt) => {
     this.props.addTodo(this.state.content);
     //Cần phải gọi action tới store để thêm todo
@@ -77,31 +104,7 @@ class TodoApp extends Component {
           </button>
         </div>
         <ul>
-          {this.props.todoList
-            .filter((todo) => {
-              switch (this.props.filter) {
-                case "active": {
-                  return !todo.isCompleted;
-                }
-                case "completed": {
-                  return todo.isCompleted;
-                }
-                case "all": {
-                  return todo;
-                }
-              }
-            })
-            .map((todo) => (
-              <li
-                key={todo.id}
-                onClick={() => this.todoCompleted(todo.id)}
-                style={{
-                  textDecoration: todo.isCompleted ? "line-through" : "none",
-                }}
-              >
-                {todo.content}
-              </li>
-            ))}
+          {this.renderToDo()}
         </ul>
       </div>
     );
