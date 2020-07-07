@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { addTodo, todoCompleted } from "../actions/todoActions.js";
+import { addTodo, todoCompleted, showCompleted, showDoing, showAll } from "../actions/todoActions.js";
 
 class TodoApp extends Component {
   constructor(props) {
@@ -46,6 +46,11 @@ class TodoApp extends Component {
             Add
           </button>
         </div>
+        <div className="d-flex justify-content-around m-2">
+          <button className="btn btn-primary" onClick={this.props.showAll}>All</button>
+          <button className="btn btn-success" onClick={this.props.showDoing}>Doing</button>
+          <button className="btn btn-secondary" onClick={this.props.showCompleted}>Completed</button>
+        </div>
         <ul>
           {this.props.todoList.map((todo) => (
             <li
@@ -74,6 +79,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addTodo: (content) => dispatch(addTodo(content)),
     todoCompleted: (id) => dispatch(todoCompleted(id)),
+    showCompleted: () => dispatch(showCompleted()),
+    showDoing: () => dispatch(showDoing()),
+    showAll: () => dispatch(showAll())
   };
 };
 

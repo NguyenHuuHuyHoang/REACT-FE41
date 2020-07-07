@@ -27,8 +27,26 @@ const todosReducer = (state = initialState, action) => {
         }
         return todo;
       });
-      return { ...state, todoList : todoList };
+      return { ...state, todoList: todoList };
     }
+    case "SHOW_COMPLETED_TODO": {
+      const completedToDoList = state.todoList.filter(
+        (todo) => todo.isCompleted === true
+      );
+      return { ...state, todoList: completedToDoList };
+    }
+
+    case "SHOW_DOING_TODO": {
+      const doingToDoList = state.todoList.filter(
+        (todo) => todo.isCompleted === false
+      );
+      return { ...state, todoList: doingToDoList };
+    }
+
+    case "SHOW_ALL_TODO": {
+      return {...state}
+    }
+
     default:
       return state;
   }
