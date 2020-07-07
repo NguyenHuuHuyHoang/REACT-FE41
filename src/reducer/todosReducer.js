@@ -4,6 +4,7 @@ const initialState = {
     { id: 2, content: "Làm bài tập", isCompleted: false },
     { id: 3, content: "Tập thể dục", isCompleted: false },
   ],
+  filter: "all",
 };
 
 const todosReducer = (state = initialState, action) => {
@@ -29,24 +30,9 @@ const todosReducer = (state = initialState, action) => {
       });
       return { ...state, todoList: todoList };
     }
-    case "SHOW_COMPLETED_TODO": {
-      const completedToDoList = state.todoList.filter(
-        (todo) => todo.isCompleted === true
-      );
-      return { ...state, todoList: completedToDoList };
+    case "FILTER_TODO": {
+      return { ...state, filter: action.status };
     }
-
-    case "SHOW_DOING_TODO": {
-      const doingToDoList = state.todoList.filter(
-        (todo) => todo.isCompleted === false
-      );
-      return { ...state, todoList: doingToDoList };
-    }
-
-    case "SHOW_ALL_TODO": {
-      return {...state}
-    }
-
     default:
       return state;
   }

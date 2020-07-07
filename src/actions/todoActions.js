@@ -12,20 +12,9 @@ export const todoCompleted = (id) => {
   };
 };
 
-export const showAll = () => {
+export const filterTodo = (status) => {
   return {
-    type: "SHOW_ALL_TODO"
-  }
-}
-
-export const showCompleted = () => {
-  return {
-    type: "SHOW_COMPLETED_TODO"
-  }
-}
-
-export const showDoing = () => {
-  return {
-    type: "SHOW_DOING_TODO"
-  }
-}
+    type: "FILTER_TODO",
+    status,
+  };
+};

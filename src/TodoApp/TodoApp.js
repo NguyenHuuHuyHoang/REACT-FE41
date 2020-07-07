@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { addTodo, todoCompleted, showCompleted, showDoing, showAll } from "../actions/todoActions.js";
+import { addTodo, todoCompleted, filterTodo } from "../actions/todoActions.js";
 
 class TodoApp extends Component {
   constructor(props) {
@@ -26,6 +26,10 @@ class TodoApp extends Component {
     this.props.todoCompleted(id);
   };
 
+  filterTodo = (status) => {
+    this.props.filterTodo(status);
+  };
+
   render() {
     return (
       <div className="w-25 mx-auto">
@@ -47,22 +51,57 @@ class TodoApp extends Component {
           </button>
         </div>
         <div className="d-flex justify-content-around m-2">
-          <button className="btn btn-primary" onClick={this.props.showAll}>All</button>
-          <button className="btn btn-success" onClick={this.props.showDoing}>Doing</button>
-          <button className="btn btn-secondary" onClick={this.props.showCompleted}>Completed</button>
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              this.filterTodo("all");
+            }}
+          >
+            All
+          </button>
+          <button
+            className="btn btn-success"
+            onClick={() => {
+              this.filterTodo("active");
+            }}
+          >
+            Action
+          </button>
+          <button
+            className="btn btn-secondary"
+            onClick={() => {
+              this.filterTodo("completed");
+            }}
+          >
+            Completed
+          </button>
         </div>
         <ul>
-          {this.props.todoList.map((todo) => (
-            <li
-              key={todo.id}
-              onClick={() => this.todoCompleted(todo.id)}
-              style={{
-                textDecoration: todo.isCompleted ? "line-through" : "none",
-              }}
-            >
-              {todo.content}
-            </li>
-          ))}
+          {this.props.todoList
+            .filter((todo) => {
+              switch (this.props.filter) {
+                case "active": {
+                  return !todo.isCompleted;
+                }
+                case "completed": {
+                  return todo.isCompleted;
+                }
+                case "all": {
+                  return todo;
+                }
+              }
+            })
+            .map((todo) => (
+              <li
+                key={todo.id}
+                onClick={() => this.todoCompleted(todo.id)}
+                style={{
+                  textDecoration: todo.isCompleted ? "line-through" : "none",
+                }}
+              >
+                {todo.content}
+              </li>
+            ))}
         </ul>
       </div>
     );
@@ -72,6 +111,7 @@ class TodoApp extends Component {
 const mapStateToProps = (state) => {
   return {
     todoList: state.todosReducer.todoList,
+    filter: state.todosReducer.filter, //Chay vao store de lay gia tri status
   };
 };
 
@@ -79,9 +119,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addTodo: (content) => dispatch(addTodo(content)),
     todoCompleted: (id) => dispatch(todoCompleted(id)),
-    showCompleted: () => dispatch(showCompleted()),
-    showDoing: () => dispatch(showDoing()),
-    showAll: () => dispatch(showAll())
+    filterTodo: (status) => dispatch(filterTodo(status)),
   };
 };
 
