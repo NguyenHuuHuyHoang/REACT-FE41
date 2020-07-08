@@ -17,7 +17,7 @@ class CartModalRedux extends Component {
           aria-labelledby="modelTitleId"
           aria-hidden="true"
         >
-          <div className="modal-dialog" role="document">
+          <div className="modal-dialog modal-lg" role="document">
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">Modal title</h5>
@@ -39,6 +39,7 @@ class CartModalRedux extends Component {
                       <th>Tên SP</th>
                       <th>Số lượng</th>
                       <th>Giá</th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -54,12 +55,17 @@ class CartModalRedux extends Component {
                         </td>
                         <td>{sp.maSP}</td>
                         <td>{sp.tenSP}</td>
-                        <td>{sp.soLuong}</td>
+                        <td>
+                          <button className="btn btn-danger mr-2">-</button>
+                          {sp.soLuong}
+                          <button className="btn btn-primary ml-2">+</button>
+                          </td>
                         <td>{sp.giaBan.toLocaleString()}</td>
+                        <td><button className="btn btn-danger">Xóa</button></td>
                       </tr>
                     ))}
                   </tbody>
-                  {this.props.dsgh.length && (
+                  {this.props.dsgh.length < 0 && (
                       <tfoot>
                       <tr>
                           <td colSpan="4"></td>
