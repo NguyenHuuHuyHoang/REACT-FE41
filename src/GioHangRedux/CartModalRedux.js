@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { thayDoiSoLuongSanPhamAction, xoaSanPham } from "../actions/gioHangActions";
 
 class CartModalRedux extends Component {
   render() {
@@ -31,7 +32,7 @@ class CartModalRedux extends Component {
                 </button>
               </div>
               <div className="modal-body">
-                <table class="table">
+                <table className="table">
                   <thead>
                     <tr>
                       <th>Hình ảnh</th>
@@ -56,22 +57,38 @@ class CartModalRedux extends Component {
                         <td>{sp.maSP}</td>
                         <td>{sp.tenSP}</td>
                         <td>
-                          <button className="btn btn-danger mr-2">-</button>
+                          <button
+                            className="btn btn-danger mr-2"
+                            onClick={() => {
+                              this.props.thayDoiSoLuongSanPhamAction(sp, false);
+                            }}
+                          >
+                            -
+                          </button>
                           {sp.soLuong}
-                          <button className="btn btn-primary ml-2">+</button>
-                          </td>
+                          <button
+                            className="btn btn-primary ml-2"
+                            onClick={() => {
+                              this.props.thayDoiSoLuongSanPhamAction(sp, true);
+                            }}
+                          >
+                            +
+                          </button>
+                        </td>
                         <td>{sp.giaBan.toLocaleString()}</td>
-                        <td><button className="btn btn-danger">Xóa</button></td>
+                        <td>
+                          <button className="btn btn-danger" onClick={() =>{this.props.xoaSanPham(sp)}}>Xóa</button>
+                        </td>
                       </tr>
                     ))}
                   </tbody>
                   {this.props.dsgh.length < 0 && (
-                      <tfoot>
+                    <tfoot>
                       <tr>
-                          <td colSpan="4"></td>
-                          <td>Tổng tiền: {tongTien.toLocaleString()}</td>
+                        <td colSpan="4"></td>
+                        <td>Tổng tiền: {tongTien.toLocaleString()}</td>
                       </tr>
-                  </tfoot>
+                    </tfoot>
                   )}
                 </table>
               </div>
@@ -101,4 +118,15 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(CartModalRedux);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    thayDoiSoLuongSanPhamAction: (sanPham, isAdd) => {
+      dispatch(thayDoiSoLuongSanPhamAction(sanPham, isAdd));
+    },
+    xoaSanPham: (sanPham) => {
+      dispatch(xoaSanPham(sanPham));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartModalRedux);

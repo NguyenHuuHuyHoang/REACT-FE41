@@ -55,6 +55,34 @@ const gioHangReducer = (state = initialState, action) => {
       danhSachGioHangNew[index].soLuong += 1;
       return { ...state, danhSachGioHang: danhSachGioHangNew };
     }
+    case "THAY_DOI_SO_LUONG": {
+      const index = state.danhSachGioHang.findIndex(
+        (sp) => sp.maSP === action.sanPham.maSP
+      );
+      const danhSachGioHangNew = [...state.danhSachGioHang];
+      if (action.isAdd) {
+        danhSachGioHangNew[index].soLuong += 1;
+        return { ...state, danhSachGioHang: danhSachGioHangNew };
+      } else {
+        if (danhSachGioHangNew[index].soLuong > 1) {
+          danhSachGioHangNew[index].soLuong -= 1;
+          return { ...state, danhSachGioHang: danhSachGioHangNew };
+        } else {
+          danhSachGioHangNew.splice(index, 1);
+          return { ...state, danhSachGioHang: danhSachGioHangNew };
+        }
+      }
+    }
+    case "XOA_SAN_PHAM": {
+      const index = state.danhSachGioHang.findIndex(
+        (sp) => sp.maSP === action.sanPham.maSP
+      );
+
+      const danhSachGioHangNew = [...state.danhSachGioHang];
+      danhSachGioHangNew.splice(index, 1);
+
+      return { ...state, danhSachGioHang: danhSachGioHangNew };
+    }
     default:
       return state;
   }
