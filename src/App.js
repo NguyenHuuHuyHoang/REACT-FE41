@@ -1,21 +1,20 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import BaiTapDanLayout from './components/BaiTapDanLayout/BaiTapDanLayout';
-import DataBinding from './DataBinding/DataBinding';
-import EventBinding from './DataBinding/EventBinding';
-import State from './State/State';
-import ExState1 from './State/ExState1';
-import ExState2 from './State/ExState2';
-import RenderWithMap from './DataBinding/RenderWithMap/RenderWithMap';
-import DemoProps from './Props/DemoProps';
-import BT2ProductList from './Props/BT2ProductList/BT2ProductList';
-import BT3PhoneList from './Props/BT3PhoneList/BT3PhoneList';
-import BTCarts from './Props/BTCart/BTCarts';
-import TodoApp from './TodoApp/TodoApp';
-import CartsRedux from './GioHangRedux/CartsRedux';
-
-
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import BaiTapDanLayout from "./components/BaiTapDanLayout/BaiTapDanLayout";
+import DataBinding from "./DataBinding/DataBinding";
+import EventBinding from "./DataBinding/EventBinding";
+import State from "./State/State";
+import ExState1 from "./State/ExState1";
+import ExState2 from "./State/ExState2";
+import RenderWithMap from "./DataBinding/RenderWithMap/RenderWithMap";
+import DemoProps from "./Props/DemoProps";
+import BT2ProductList from "./Props/BT2ProductList/BT2ProductList";
+import BT3PhoneList from "./Props/BT3PhoneList/BT3PhoneList";
+import BTCarts from "./Props/BTCart/BTCarts";
+import TodoApp from "./TodoApp/TodoApp";
+import CartsRedux from "./GioHangRedux/CartsRedux";
+import BaiTapForm from "./QuanLySinhVien/BaiTapForm";
 
 class App extends Component {
   // dataJSON = [
@@ -138,7 +137,7 @@ class App extends Component {
   //     "shortDescription": "Paul George is the rare high-percentage shooter",
   //     "quantity": 445,
   //     "image": "http://svcy3.myclass.vn/images/nike-air-max-270-react.png"
-  //   } 
+  //   }
   // ]
   render() {
     return (
@@ -146,15 +145,16 @@ class App extends Component {
         {/* <BTCarts /> */}
         {/* <BT3PhoneList /> */}
         {/* <BT2ProductList dataJSON={this.dataJSON}/> */}
-      {/* <BaiTapDanLayout /> */}
-       {/* <EventBinding /> */}
-       {/* <State /> */}
-       {/* <ExState1 /> */}
-       {/* <ExState2 /> */}
-       {/* <RenderWithMap /> */}
-       {/* <DemoProps /> */}
-       {/* <TodoApp /> */}
-       <CartsRedux />
+        {/* <BaiTapDanLayout /> */}
+        {/* <EventBinding /> */}
+        {/* <State /> */}
+        {/* <ExState1 /> */}
+        {/* <ExState2 /> */}
+        {/* <RenderWithMap /> */}
+        {/* <DemoProps /> */}
+        {/* <TodoApp /> */}
+        {/* <CartsRedux /> */}
+        <BaiTapForm />
       </div>
     );
   }
