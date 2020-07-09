@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { thayDoiSoLuongSanPhamAction, xoaSanPham } from "../actions/gioHangActions";
+import {
+  thayDoiSoLuongSanPhamAction,
+  xoaSanPham,
+} from "../actions/gioHangActions";
+import { tinhTongTien } from "../selectors/gioHangSelectors";
 
 class CartModalRedux extends Component {
   render() {
-    const tongTien = this.props.dsgh.reduce((total, sp) => {
-      total += sp.giaBan * sp.soLuong;
-      return total;
-    }, 0);
     return (
       <div>
         <div
@@ -77,16 +77,25 @@ class CartModalRedux extends Component {
                         </td>
                         <td>{sp.giaBan.toLocaleString()}</td>
                         <td>
-                          <button className="btn btn-danger" onClick={() =>{this.props.xoaSanPham(sp)}}>Xóa</button>
+                          <button
+                            className="btn btn-danger"
+                            onClick={() => {
+                              this.props.xoaSanPham(sp);
+                            }}
+                          >
+                            Xóa
+                          </button>
                         </td>
                       </tr>
                     ))}
                   </tbody>
-                  {this.props.dsgh.length < 0 && (
+                  {this.props.dsgh.length > 0 && (
                     <tfoot>
                       <tr>
                         <td colSpan="4"></td>
-                        <td>Tổng tiền: {tongTien.toLocaleString()}</td>
+                        <td>
+                          Tổng tiền: {this.props.tongTien.toLocaleString()}
+                        </td>
                       </tr>
                     </tfoot>
                   )}
@@ -115,6 +124,7 @@ class CartModalRedux extends Component {
 const mapStateToProps = (state) => {
   return {
     dsgh: state.gioHangReducer.danhSachGioHang, //Can lay gia tri gi tu store thi khai bao
+    tongTien: tinhTongTien(state),
   };
 };
 

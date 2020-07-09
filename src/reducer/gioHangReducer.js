@@ -52,7 +52,7 @@ const gioHangReducer = (state = initialState, action) => {
         return { ...state, danhSachGioHang: danhSachGioHangNew };
       }
       const danhSachGioHangNew = [...state.danhSachGioHang];
-      danhSachGioHangNew[index].soLuong += 1;
+      danhSachGioHangNew[index].soLuong++;
       return { ...state, danhSachGioHang: danhSachGioHangNew };
     }
     case "THAY_DOI_SO_LUONG": {
@@ -61,11 +61,11 @@ const gioHangReducer = (state = initialState, action) => {
       );
       const danhSachGioHangNew = [...state.danhSachGioHang];
       if (action.isAdd) {
-        danhSachGioHangNew[index].soLuong += 1;
+        danhSachGioHangNew[index].soLuong++;
         return { ...state, danhSachGioHang: danhSachGioHangNew };
       } else {
         if (danhSachGioHangNew[index].soLuong > 1) {
-          danhSachGioHangNew[index].soLuong -= 1;
+          danhSachGioHangNew[index].soLuong--;
           return { ...state, danhSachGioHang: danhSachGioHangNew };
         } else {
           danhSachGioHangNew.splice(index, 1);
