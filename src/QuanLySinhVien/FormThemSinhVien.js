@@ -37,7 +37,7 @@ export default class FormThemSinhVien extends Component {
 
   handleBlur = (evt) => {
     const { name, value } = evt.target;
-
+    console.log(name)
     const error = this.validation(name, value);
     this.setState({
       errors: {
@@ -95,8 +95,15 @@ export default class FormThemSinhVien extends Component {
                 value={this.state.values.soDT}
                 name="soDT"
                 onChange={this.handelChange}
+                onBlur={this.handleBlur}
                 // onChange={(evt) => this.setState({ soDT: evt.target.value })}
+               
               />
+               {this.state.errors.soDT && (
+                  <div className="alert alert-danger" role="alert">
+                    {this.state.errors.soDT}
+                  </div>
+                )}
             </div>
           </div>
           <div className="col-sm-6">
@@ -108,8 +115,14 @@ export default class FormThemSinhVien extends Component {
                 value={this.state.values.hoTen}
                 name="hoTen"
                 onChange={this.handelChange}
+                onBlur={this.handleBlur}
                 // onChange={(evt) => this.setState({ hoTen: evt.target.value })}
               />
+                {this.state.errors.hoTen && (
+                  <div className="alert alert-danger" role="alert">
+                    {this.state.errors.hoTen}
+                  </div>
+                )}
             </div>
           </div>
           <div className="col-sm-6">
@@ -121,8 +134,14 @@ export default class FormThemSinhVien extends Component {
                 value={this.state.values.email}
                 name="email"
                 onChange={this.handelChange}
+                onBlur={this.handleBlur}
                 // onChange={(evt) => this.setState({ email: evt.target.value })}
               />
+                {this.state.errors.email && (
+                  <div className="alert alert-danger" role="alert">
+                    {this.state.errors.email}
+                  </div>
+                )}
             </div>
           </div>
 
