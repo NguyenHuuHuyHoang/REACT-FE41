@@ -32,12 +32,30 @@ export default class FormThemSinhVien extends Component {
   };
 
   handleSubmit = () => {
-    console.log(this.state);
+    let hasError = false;
+    for (let key in this.state.values) {
+      const error = this.validation(key, this.state.values[key]);
+
+      if (error) {
+        this.setState((state) => {
+          return {
+            errors: {
+              ...state.errors,
+              [key]: error,
+            },
+          };
+        });
+        hasError = true;
+      }
+    }
+    if (hasError) return;
+
+    console.log(this.state.values);
   };
 
   handleBlur = (evt) => {
     const { name, value } = evt.target;
-    console.log(name)
+    console.log(name);
     const error = this.validation(name, value);
     this.setState({
       errors: {
@@ -97,13 +115,12 @@ export default class FormThemSinhVien extends Component {
                 onChange={this.handelChange}
                 onBlur={this.handleBlur}
                 // onChange={(evt) => this.setState({ soDT: evt.target.value })}
-               
               />
-               {this.state.errors.soDT && (
-                  <div className="alert alert-danger" role="alert">
-                    {this.state.errors.soDT}
-                  </div>
-                )}
+              {this.state.errors.soDT && (
+                <div className="alert alert-danger" role="alert">
+                  {this.state.errors.soDT}
+                </div>
+              )}
             </div>
           </div>
           <div className="col-sm-6">
@@ -118,11 +135,11 @@ export default class FormThemSinhVien extends Component {
                 onBlur={this.handleBlur}
                 // onChange={(evt) => this.setState({ hoTen: evt.target.value })}
               />
-                {this.state.errors.hoTen && (
-                  <div className="alert alert-danger" role="alert">
-                    {this.state.errors.hoTen}
-                  </div>
-                )}
+              {this.state.errors.hoTen && (
+                <div className="alert alert-danger" role="alert">
+                  {this.state.errors.hoTen}
+                </div>
+              )}
             </div>
           </div>
           <div className="col-sm-6">
@@ -137,11 +154,11 @@ export default class FormThemSinhVien extends Component {
                 onBlur={this.handleBlur}
                 // onChange={(evt) => this.setState({ email: evt.target.value })}
               />
-                {this.state.errors.email && (
-                  <div className="alert alert-danger" role="alert">
-                    {this.state.errors.email}
-                  </div>
-                )}
+              {this.state.errors.email && (
+                <div className="alert alert-danger" role="alert">
+                  {this.state.errors.email}
+                </div>
+              )}
             </div>
           </div>
 
