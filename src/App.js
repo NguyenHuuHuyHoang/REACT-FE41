@@ -15,6 +15,7 @@ import BTCarts from "./Props/BTCart/BTCarts";
 import TodoApp from "./TodoApp/TodoApp";
 import CartsRedux from "./GioHangRedux/CartsRedux";
 import BaiTapForm from "./QuanLySinhVien/BaiTapForm";
+import LifeCycle from "./lifecycle";
 
 class App extends Component {
   // dataJSON = [
@@ -155,6 +156,7 @@ class App extends Component {
         {/* <TodoApp /> */}
         {/* <CartsRedux /> */}
         <BaiTapForm />
+        {/* <LifeCycle /> */}
       </div>
     );
   }
