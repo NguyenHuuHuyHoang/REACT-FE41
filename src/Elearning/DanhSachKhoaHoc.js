@@ -24,6 +24,20 @@ class DanhSachKhoaHoc extends Component {
   }
 
   render() {
+    const { dskh, loading, error } = this.props;
+    if (loading) {
+      //return <Loading />
+      return <p>Loading....</p>;
+    }
+
+    if (error) {
+      //return <Error />
+      return (
+        <div className="alert alert-danger">
+          <p>Something went wrong</p>
+        </div>
+      );
+    }
     return (
       <div>
         <div className="container">
@@ -43,6 +57,8 @@ class DanhSachKhoaHoc extends Component {
 const mapStateToProps = (state) => {
   return {
     dskh: state.khoaHocReducer.danhSachKhoaHoc,
+    loading: state.khoaHocReducer.loading,
+    error: state.khoaHocReducer.error,
   };
 };
 
