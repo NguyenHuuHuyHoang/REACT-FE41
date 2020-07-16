@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { themSinhVienAction } from "../actions/sinhVienAction";
+import {
+  themSinhVienAction,
+  suaSinhVienAction,
+  chonSinhVienAction,
+} from "../actions/sinhVienAction";
 
 class FormThemSinhVien extends Component {
   state = {
@@ -75,6 +79,18 @@ class FormThemSinhVien extends Component {
     });
   };
 
+  huyCapNhat = () => {
+    this.props.chonSinhVien({});
+    this.setState({
+      values: {
+        maSV: "",
+        soDT: "",
+        hoTen: "",
+        email: "",
+      },
+    });
+  };
+
   validation = (name, value) => {
     if (name === "maSV") {
       return value ? "" : "Mã sinh viên không được để trống";
@@ -101,6 +117,7 @@ class FormThemSinhVien extends Component {
                 type="text"
                 className="form-control"
                 value={this.state.values.maSV}
+                disabled={this.props.isUpdate}
                 name="maSV"
                 // onChange={evt => this.setState({maSV: evt.target.value})}
                 onChange={this.handelChange}
@@ -171,13 +188,26 @@ class FormThemSinhVien extends Component {
               )}
             </div>
           </div>
-
-          <button
-            className="btn btn-primary m-auto "
-            onClick={this.handleSubmit}
-          >
-            Thêm
-          </button>
+          {this.props.isUpdate ? (
+            <div className="m-auto">
+              <button
+                className="btn btn-success"
+                onClick={() => this.props.suaSinhVien(this.state.values)}
+              >
+                Cập nhật
+              </button>
+              <button className="btn btn-secondary" onClick={this.huyCapNhat}>
+                Hủy
+              </button>
+            </div>
+          ) : (
+            <button
+              className="btn btn-primary m-auto "
+              onClick={this.handleSubmit}
+            >
+              Thêm
+            </button>
+          )}
         </div>
       </div>
     );
@@ -187,12 +217,15 @@ class FormThemSinhVien extends Component {
 const mapStateToProps = (state) => {
   return {
     sinhVienDangChon: state.sinhVienReducer.sinhVienDangChon,
+    isUpdate: Object.keys(state.sinhVienReducer.sinhVienDangChon).length !== 0,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     themSinhVien: (sinhVien) => dispatch(themSinhVienAction(sinhVien)),
+    suaSinhVien: (sinhVien) => dispatch(suaSinhVienAction(sinhVien)),
+    chonSinhVien: (sinhVien) => dispatch(chonSinhVienAction(sinhVien)),
   };
 };
 
